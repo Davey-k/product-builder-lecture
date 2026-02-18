@@ -104,7 +104,7 @@ const body = document.body;
 // 기존 설정 확인
 const savedTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', savedTheme);
-themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+themeToggle.innerHTML = savedTheme === 'dark' ? '☀️ 라이트 모드' : '🌙 다크 모드';
 
 themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
@@ -112,5 +112,5 @@ themeToggle.addEventListener('click', () => {
     
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    themeToggle.innerHTML = newTheme === 'dark' ? '☀️ 라이트 모드' : '🌙 다크 모드';
 });
