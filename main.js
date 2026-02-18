@@ -1,10 +1,18 @@
 class LottoBall extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    render() {
         const number = this.getAttribute('number');
         const ball = document.createElement('div');
         ball.textContent = number;
+        
         const style = document.createElement('style');
         style.textContent = `
             div {
@@ -19,12 +27,18 @@ class LottoBall extends HTMLElement {
                 color: #fff;
                 animation: fadeIn 0.5s ease-in-out;
             }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.8); }
+                to { opacity: 1; transform: scale(1); }
+            }
         `;
+        
         const color = this.getColor(parseInt(number, 10));
         ball.style.backgroundColor = color;
 
-        shadow.appendChild(style);
-        shadow.appendChild(ball);
+        this.shadowRoot.innerHTML = '';
+        this.shadowRoot.appendChild(style);
+        this.shadowRoot.appendChild(ball);
     }
 
     getColor(number) {
