@@ -41,16 +41,24 @@ customElements.define('lotto-ball', LottoBall);
 document.getElementById('generate-btn').addEventListener('click', () => {
     const lottoNumbersContainer = document.getElementById('lotto-numbers');
     lottoNumbersContainer.innerHTML = '';
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        numbers.add(Math.floor(Math.random() * 45) + 1);
+
+    for (let i = 0; i < 5; i++) {
+        const row = document.createElement('div');
+        row.className = 'lotto-row';
+        
+        const numbers = new Set();
+        while (numbers.size < 6) {
+            numbers.add(Math.floor(Math.random() * 45) + 1);
+        }
+
+        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+
+        sortedNumbers.forEach(number => {
+            const lottoBall = document.createElement('lotto-ball');
+            lottoBall.setAttribute('number', number);
+            row.appendChild(lottoBall);
+        });
+
+        lottoNumbersContainer.appendChild(row);
     }
-
-    const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-    sortedNumbers.forEach(number => {
-        const lottoBall = document.createElement('lotto-ball');
-        lottoBall.setAttribute('number', number);
-        lottoNumbersContainer.appendChild(lottoBall);
-    });
 });
