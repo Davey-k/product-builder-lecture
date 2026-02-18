@@ -1,3 +1,25 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --container-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #2c3e50;
+    --row-bg: #f8f9fa;
+    --btn-primary: linear-gradient(135deg, #007bff, #0056b3);
+    --btn-secondary: #e9ecef;
+    --btn-secondary-text: #495057;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --container-bg: rgba(30, 39, 46, 0.95);
+    --text-color: #ecf0f1;
+    --row-bg: #2f3542;
+    --btn-primary: linear-gradient(135deg, #4834d4, #686de0);
+    --btn-secondary: #3d3d3d;
+    --btn-secondary-text: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
 body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     display: flex;
@@ -5,25 +27,53 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    transition: background 0.3s ease;
 }
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 3rem 2rem;
+    background-color: var(--container-bg);
+    padding: 2.5rem 2rem;
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px var(--shadow);
     width: 90%;
     max-width: 480px;
+    transition: all 0.3s ease;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
 }
 
 h1 {
-    color: #2c3e50;
-    margin-bottom: 2.5rem;
+    color: var(--text-color);
+    margin: 0;
     font-size: 1.8rem;
     font-weight: 800;
     letter-spacing: -0.5px;
+}
+
+#theme-toggle {
+    background: var(--btn-secondary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+#theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
 }
 
 .lotto-numbers {
@@ -32,41 +82,57 @@ h1 {
     align-items: center;
     gap: 16px;
     margin-bottom: 2.5rem;
+    min-height: 100px;
 }
 
 .lotto-row {
     display: flex;
     justify-content: center;
     gap: 12px;
-    padding: 8px;
-    background: #f8f9fa;
+    padding: 10px;
+    background: var(--row-bg);
     border-radius: 100px;
     width: 100%;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 
+.button-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
 #generate-btn {
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    background: var(--btn-primary);
     color: #fff;
     border: none;
-    padding: 16px 40px;
+    padding: 16px 32px;
     font-size: 1.1rem;
     font-weight: 700;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: all 0.2s ease;
+    flex: 2;
 }
 
-#generate-btn:hover {
+#reset-btn {
+    background: var(--btn-secondary);
+    color: var(--btn-secondary-text);
+    border: none;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+#generate-btn:hover, #reset-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    opacity: 0.9;
 }
 
-#generate-btn:active {
+#generate-btn:active, #reset-btn:active {
     transform: translateY(0);
-}
-
-lotto-ball {
-    /* Base styles moved to Web Component shadow DOM for better encapsulation */
 }

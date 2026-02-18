@@ -8,9 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>로또 번호 추첨기</h1>
+        <div class="header">
+            <h1>로또 번호 추첨기</h1>
+            <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
         <div id="lotto-numbers" class="lotto-numbers"></div>
-        <button id="generate-btn">번호 생성</button>
+        <div class="button-group">
+            <button id="generate-btn">번호 생성</button>
+            <button id="reset-btn" class="secondary-btn">초기화</button>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
